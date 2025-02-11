@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentine Card</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gray-100">
+    <div class="relative w-[400px] h-[600px] bg-white border-2 border-black p-4">
+        <div class="absolute top-2 left-2 flex flex-col items-center">
+            <span class="text-2xl font-bold">A</span>
+            <svg class="h-6 w-6 text-red-600 fill-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="absolute bottom-2 right-2 flex flex-col items-center rotate-180">
+            <span class="text-2xl font-bold">A</span>
+            <svg class="h-6 w-6 text-red-600 fill-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+            </svg>
+        </div>
+        <div class="flex flex-col items-center justify-center h-full space-y-8">
+            <div class="relative">
+                <svg class="h-48 w-48 text-red-600 fill-red-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+                </svg>
+                <div class="absolute inset-0 flex items-center justify-center text-center">
+                    <div id="response-text" class="text-black font-bold text-2xl px-4 whitespace-pre-line">
+                        Will you be my
+                        Valentine?
+                    </div>
+                </div>
+            </div>
+            <div id="buttons" class="flex space-x-4">
+                <button id="yes-btn" class="bg-red-600 hover:bg-red-700 text-black font-bold py-2 px-8 rounded-full text-lg">YES</button>
+                <button id="no-btn" class="bg-red-600 hover:bg-red-700 text-black font-bold py-2 px-8 rounded-full text-lg">NO</button>
+            </div>
+            <div id="poem" class="mt-8 hidden">
+                <div class="text-xl text-black mb-4">Here's a little poem for you:</div>
+                <div class="italic text-black 500">
+                    Roses are red,<br />
+                    Violets are blue,<br />
+                    I'm so happy,<br />
+                    To spend Valentine's with you!
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        let noCount = 0;
+        const noButtonTexts = [
+            "NO", "Are you sure?", "Really sure?", "Think again!", "Last chance!", "Surely not?",
+            "You might regret this!", "Give it another thought!", "Are you absolutely certain?",
+            "This could be a mistake!", "Have a heart!", "Don't be so cold!", "Change of heart?",
+            "Wouldn't you reconsider?", "Is that your final answer?", "You're breaking my heart ;("
+        ];
+
+        document.getElementById("yes-btn").addEventListener("click", function() {
+            document.getElementById("response-text").textContent = "Yay! Happy Valentine's Day! ❤️";
+            document.getElementById("buttons").remove();
+            document.getElementById("poem").style.display = "block";
+
+        });
+
+        document.getElementById("no-btn").addEventListener("click", function() {
+            noCount++;
+            if (noCount < noButtonTexts.length) {
+                this.textContent = noButtonTexts[noCount];
+            } else {
+                this.textContent = "I said no!";
+            }
+            document.getElementById("yes-btn").style.fontSize = `${16 + noCount * 2}px`;
+        });
+    </script>
+</body>
+</html>
